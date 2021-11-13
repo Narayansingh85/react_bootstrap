@@ -21,14 +21,19 @@ function HomeScreen() {
 
     //Fetch Users
     const fetchUsers = async () => {
-        const res = await fetch("http://localhost:4000/",{mode:'cors'})
-        const data = await res.json()
-        return data
+        try{
+            const res = await fetch("http://localhost:4000/",{mode:'cors'})
+            const data = await res.json()
+            return data
+
+        }catch(err){
+            return users
+        }
     }
 
     return (
         <div>
-            <BannerComponent />
+            <BannerComponent path1={'/registration'} path2={'/login'} text1={'Sign Up'} text2={'Login'} />
             <NavbarComponent setSearch1={setSearch1}  />
             <Container className="cards row card-group">
                 {

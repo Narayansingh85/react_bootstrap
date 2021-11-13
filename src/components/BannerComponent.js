@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar, Container, Nav } from 'react-bootstrap'
 import ButtonComponent from "./ButtonComponent"
-function BannerComponent() {
+function BannerComponent({path1,path2,text1,text2}) {
     return (
         <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
             <Container className="justify-content-center text-blue" >
@@ -11,8 +11,8 @@ function BannerComponent() {
                 </Nav.Item>
 
             </Container>
-            <ButtonComponent link={'/registration'} text={'Sign Up'}/>
-            <ButtonComponent link={'/login'} text={'Login'}/>        
+            <ButtonComponent link={path1} text={text1}/>
+            {path2?<ButtonComponent link={path2} text={text2}/>:''}        
 
         </Navbar>
     )
