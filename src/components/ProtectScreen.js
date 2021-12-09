@@ -1,23 +1,26 @@
+import Cookies from "js-cookie";
 import React from "react";
-import { Redirect} from "react-router";
-import { BrowserRouter as Route } from "react-router-dom";
+import { Redirect } from "react-router";
+import { Route } from "react-router-dom";
 
-function ProtectScreen({ auth, Component: Component, ...rest }) {
-
-  return (
-    <div>
-      {
-      
-        <Route
+function ProtectScreen({  component: Component,path, ...rest }) {
+    const auth = Cookies.get('Token')
+    
+    return (
+      <Route to="/main"
         {...rest}
-          path="/main"
-          render={() => {
-            <Component/>;
-          }}
-        />
+        render={(props)=>{
+          if (auth) {
+            return <Component/>
+          }
+          else {
+           return <Redirect to="/login"/>
         }
-    </div>
-  );
-}
+        }}
+
+      />
+    );
+  } 
+
 
 export default ProtectScreen;

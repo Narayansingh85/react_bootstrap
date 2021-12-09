@@ -2,24 +2,12 @@ import React, { useState } from "react";
 import { Container, Button, Form, Navbar, Nav } from "react-bootstrap";
 import ButtonComponent from "../components/ButtonComponent";
 import axios from "axios";
-import Cookies from "universal-cookie";
-const cookies = new Cookies();
+import Cookies from "js-cookie";
+import {useHistory} from 'react-router'
 axios.defaults.withCredentials = true;
 
 function LoginScreen({ setAuth }) {
-
-  //Getting Token saving in cookie
-
-  // const createCookie = async () => {
-  //   try {
-  //     const res = await axios.get("https://localhost:4000/cookie", {
-  //       withCredentials: true,
-  //     });
-  //     console.log(res);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  const history = useHistory();
 
   const [user, setUser] = useState({
     email: "",
@@ -35,29 +23,22 @@ function LoginScreen({ setAuth }) {
   };
 
   // Login handle
-  
+
   const loginUser = async (e) => {
     e.preventDefault();
-  
 
     try {
       const res = await axios.post("http://localhost:4000/login", user);
       const token = res.data.token;
 
       if (res.status === 400 || !res.data) {
-
         window.alert("Invalid Credentials");
-
       } else if (res.status === 201) {
-
-        cookies.set("New", token); // Creating Cookie
-        setAuth(true)
-
+        Cookies.set("Token", token); // Creating Cookie
+        history.push('/main')
       }
     } catch (error) {
-
       console.log(error);
-
     }
   };
 

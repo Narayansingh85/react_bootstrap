@@ -53,7 +53,7 @@ function Registration() {
             <Navbar className="navbar navbar-expand-lg navbar-light bg-light">
                 <Container className="justify-content-center text-blue">
                     <Nav.Item >
-                        <h1>Bapple Register</h1>
+                        <h1>I.M Register</h1>
                     </Nav.Item>
                 </Container>
                     <Link to="/" className="navbar-right">

@@ -5,17 +5,10 @@ import LoginScreen from "../screens/LoginScreen";
 import MainScreen from "../screens/MainScreen";
 import ProtectScreen from "../components/ProtectScreen";
 import { BrowserRouter as Switch, Route } from "react-router-dom";
-import Cookies from "universal-cookie";
 
 function Routes() {
-  const [auth, setAuth] = React.useState(false);
 
-  // const getCookie = ()=>{
-  //   const user = Cookies.get("New")
-  //   if(user){
-  //     setAuth(true)
-  //   }
-  // }
+
   
   return (
     <div>
