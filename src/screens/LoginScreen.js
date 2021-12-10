@@ -3,12 +3,13 @@ import { Container, Button, Form, Navbar, Nav } from "react-bootstrap";
 import ButtonComponent from "../components/ButtonComponent";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
 import {useHistory} from 'react-router'
 axios.defaults.withCredentials = true;
 
-function LoginScreen({ setAuth }) {
+function LoginScreen() {
   const history = useHistory();
-
+  const dispatch = useDispatch()
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -35,6 +36,7 @@ function LoginScreen({ setAuth }) {
         window.alert("Invalid Credentials");
       } else if (res.status === 201) {
         Cookies.set("Token", token); // Creating Cookie
+        dispatch({type:"LOGGED_IN"})
         history.push('/main')
       }
     } catch (error) {
@@ -89,14 +91,6 @@ function LoginScreen({ setAuth }) {
           </Button>
         </Form>
       </Container>
-      {/* <Container>
-        <Button
-          className="btn btn-secondary ms-10 bg-light text-black"
-          onClick={createCookie}
-          value="cookie"
-          placeholder="Cookie Generate"
-        />
-      </Container> */}
     </div>
   );
 }
