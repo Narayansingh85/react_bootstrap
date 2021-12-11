@@ -17,7 +17,7 @@ function HomeScreen() {
         }
         getUser()
 
-    }, [])
+    })
 
     //Fetch Users
     const fetchUsers = async () => {

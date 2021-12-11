@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {Button } from 'react-bootstrap'
-import Cookies from 'js-cookie'
 function ButtonComponent({ link, text, handleLogout }) {
     
     return (

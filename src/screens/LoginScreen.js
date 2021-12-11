@@ -4,12 +4,12 @@ import ButtonComponent from "../components/ButtonComponent";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import {useHistory} from 'react-router'
+import { useHistory } from "react-router";
 axios.defaults.withCredentials = true;
 
 function LoginScreen() {
   const history = useHistory();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -36,11 +36,16 @@ function LoginScreen() {
         window.alert("Invalid Credentials");
       } else if (res.status === 201) {
         Cookies.set("Token", token); // Creating Cookie
-        dispatch({type:"LOGGED_IN"})
-        history.push('/main')
+        dispatch({ type: "LOGGED_IN" });
+        history.push("/main");
       }
+      
     } catch (error) {
-      console.log(error);
+      if (error.message.includes(400)) {
+        window.alert("Fill all the details");
+      } else if (error.message.includes(403) || error.message.includes(500)) {
+        window.alert("Invalid Credentials");
+      }
     }
   };
 

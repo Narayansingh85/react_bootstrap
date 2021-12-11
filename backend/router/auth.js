@@ -30,21 +30,21 @@ router.post("/registration", async (req, res) => {
   const { fname, lname, email, quali, password } = req.body;
 
   if (!fname || !lname || !email || !quali || !password) {
-    res.status(401).json({ error: "Please fill all the entries" });
+    return res.status(401).json({ message: "Please fill all the entries" });
   }
   try {
     const userExist = await User.findOne({ email: email });
     if (userExist) {
-      res.status(422).json({ error: "Email Already Exist" });
+      return res.status(422).json({ message: "Email Already Exist" });
     } else {
       const user = await new User({ fname, lname, email, quali, password });
 
       // Encrypting Password Using Middleware
       const registered = await user.save();
       if (registered) {
-        res.status(201).json({ message: "Registered Successfully" });
+        return res.status(201).json({ message: "Registered Successfully" });
       } else {
-        res.status(500).json({ error: "Failed To registered" });
+        return res.status(500).json({ message: "Failed To registered" });
       }
     }
   } catch (err) {

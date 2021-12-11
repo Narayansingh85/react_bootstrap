@@ -4,7 +4,7 @@ import Registration from "../screens/Registration";
 import LoginScreen from "../screens/LoginScreen";
 import MainScreen from "../screens/MainScreen";
 import ProtectScreen from "../components/ProtectScreen";
-import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
+import { Switch,Route } from "react-router-dom";
 
 function Routes() {
 
